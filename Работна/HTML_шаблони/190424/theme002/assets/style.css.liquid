@@ -1,0 +1,1059 @@
+! normalize.css v1.1.0 | MIT License | git.io/normalize */
+
+article,aside,details,figcaption,figure,footer,header,hgroup,regular,nav,section,summary{display:block;}audio,canvas,video{display:inline-block;*display:inline;*zoom:1;}audio:not([controls]){display:none;height:0;}[hidden]{display:none;}html{font-size:100%;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;}html,button,input,select,textarea{font-family:sans-serif;}body{margin:0;}a:focus{outline:thin dotted;}a:active,a:hover{outline:0;}h1{font-size:10px;margin:.67em 0;}h2{font-size:1.5em;margin:.83em 0;}h3{font-size:1.17em;margin:1em 0;}h4{font-size:1em;margin:1.33em 0;}h5{font-size:.83em;margin:1.67em 0;}h6{font-size:.67em;margin:2.33em 0;}abbr[title]{border-bottom:1px dotted;}b,strong{font-weight:bold;}blockquote{margin:1em 40px;}dfn{font-style:italic;}hr{-moz-box-sizing:content-box;box-sizing:content-box;height:0;}mark{background:#ff0;color:#000;}p,pre{margin:1em 0;}code,kbd,pre,samp{font-family:monospace,serif;_font-family:'courier new',monospace;font-size:1em;}pre{white-space:pre;white-space:pre-wrap;word-wrap:break-word;}q{quotes:none;}q:before,q:after{content:'';content:none;}small{font-size:80%;}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline;}sup{top:-0.5em;}sub{bottom:-0.25em;}dl,menu,ol,ul{margin:1em 0;}dd{margin:0 0 0 40px;}menu,ol,ul{padding:0 0 0 40px;}nav ul,nav ol{list-style:none;list-style-image:none;}img{border:0;-ms-interpolation-mode:bicubic;}svg:not(:root){overflow:hidden;}figure{margin:0;}form{margin:0;}fieldset{border:1px solid #c0c0c0;margin:0 2px;padding:.35em .625em .75em;}legend{border:0;padding:0;white-space:normal;*margin-left:-7px;}button,input,select,textarea{font-size:100%;margin:0;vertical-align:baseline;*vertical-align:middle;}button,input{line-height:normal;}button,select{text-transform:none;}button,html input[type="button"],input[type="reset"],input[type="submit"]{-webkit-appearance:button;cursor:pointer;*overflow:visible;}button[disabled],html input[disabled]{cursor:default;}input[type="checkbox"],input[type="radio"]{box-sizing:border-box;padding:0;*height:13px;*width:13px;}input[type="search"]{-webkit-appearance:textfield;-moz-box-sizing:content-box;-webkit-box-sizing:content-box;box-sizing:content-box;}input[type="search"]::-webkit-search-cancel-button,input[type="search"]::-webkit-search-decoration{-webkit-appearance:none;}button::-moz-focus-inner,input::-moz-focus-inner{border:0;padding:0;}textarea{overflow:auto;vertical-align:top;}table{border-collapse:collapse;border-spacing:0;}
+
+a, img{outline:none !important;}
+
+/* ==========================================================================
+   Additional styles for the Skeleton Theme - Replace that with your own CSS
+   ========================================================================== */
+
+/* Hiding placeholder text on focus in webkit, thanks to http://www.kolodvor.net/2012/03/23/webkit-placeholder-attribute-behavior */
+input:focus::-webkit-input-placeholder, textarea:focus::-webkit-input-placeholder { color:transparent; }
+
+/* Contain floats: nicolasgallagher.com/micro-clearfix-hack/ */ 
+.clearfix:before, .clearfix:after { content: ""; display: table; }
+.clearfix:after { clear: both; }
+.clearfix { zoom: 1; }
+
+/* Products grid, collections grid: we are using lists, not tables */
+ul.grid li { float: left; list-style-type: none; }
+ul.grid li { margin: 0 20px 20px 0; }
+ul.grid li.last-in-row { margin-right: 0; }
+
+/* Utility classes: Hidden, float lef, float right, etc. */
+
+.hidden { display: none; }
+.left { float: left; }
+.right { float: right; }
+
+/* Styling #site-title as it uses h1 on home page and span on other pages. */
+
+#site-title {}
+#site-title a, a#site-title{}
+#site-title.hidden{display: none;}
+
+.visuallyhidden{display: none;}
+
+
+
+/* ==========================================================================
+   Theme Styling
+   ========================================================================== */
+
+/*Global*/
+
+.container {padding: 0;}
+
+#wrapper {
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  margin: 0 auto -{{ settings.footer_height }};
+}
+
+#push, #wrapper-footer {height: {{ settings.footer_height }};}
+html, body {height: 100%;}
+
+body{
+  {% case settings.body_bg_type %}
+    {% when 'bg_image' %}
+          background: url("{{ 'body_bg.png' | asset_url }}") repeat left top transparent !important;
+    {% when 'bg_color' %}
+      background-color: {{ settings.body_bg_color }}
+  {% endcase %}
+}
+
+/*Typography*/
+
+body{
+  font-family: {{ settings.regular_font_family}};
+  font-size: {{ settings.regular_font_size}};
+  line-height: {{ settings.regular_line_height}};
+  color: {{ settings.font_color }}
+}
+
+{% assign heading_font =  %}
+{% if settings.heading_ffamily_use_custom %}
+  {% assign heading_font = settings.heading_custom_font_family %}
+{% else %}
+  {% assign heading_font = settings.heading_font_family %}
+{% endif %}
+
+h1, h2, h3, h4, h5, h6 {margin: 0;font-family: {{ heading_font }};color: {{ settings.headings_color }};}
+
+h1 {
+  font-size: {{ settings.h1_fsize }};
+  line-height: {{ settings.h1_lheight }};
+}
+h2{
+  font-size: {{ settings.h2_fsize }};
+  line-height: {{ settings.h2_lheight }};
+}
+h3{
+  font-size: {{ settings.h3_fsize}};
+  line-height: {{ settings.h3_lheight }};
+}
+h4{
+  font-size: {{ settings.h4_fsize }};
+  line-height: {{ settings.h4_lheight }};  
+}
+h5{
+  font-size: {{ settings.h5_fsize }};
+  line-height: {{ settings.h5_lheight }};
+}
+h6{
+  font-size: {{ settings.h6_fsize }};
+  line-height: {{ settings.h6_lheight }};
+}
+
+p{
+  margin: 0;
+  padding-bottom: 1em;
+}
+
+.rte h1 {
+  font-size: {{ settings.h1_fsize }};
+  line-height: {{ settings.h1_lheight }};
+}
+.rte h2 {
+  font-size: {{ settings.h2_fsize }};
+  line-height: {{ settings.h2_lheight }};
+}
+.rte h3 {
+  font-size: {{ settings.h3_fsize }};
+  line-height: {{ settings.h3_lheight }};
+}
+.rte h4 {
+  font-size: {{ settings.h4_fsize }};
+  line-height: {{ settings.h4_lheight }};
+}
+.rte h5 {
+  font-size: {{ settings.h5_fsize }};
+  line-height: {{ settings.h5_lheight }};
+  font-style: italic;
+}
+.rte h6 {
+  font-size: {{ settings.h6_fsize }};
+  line-height: {{ settings.h6_lheight }};
+}
+
+.rte h1,
+.rte h2,
+.rte h3,
+.rte h4,
+.rte h5,
+.rte h6 {padding-bottom: 15px;}
+
+
+
+/*Links*/
+
+a {color: {{ settings.link_color }};}
+a:hover{color: {{ settings.link_color_act }};text-decoration: none;}
+
+
+
+/*Forms*/
+
+label{padding-top: 15px;
+  font-size: {{ settings.regular_font_size}};
+  line-height: {{ settings.regular_line_height}};
+}
+
+/* Disabled input */
+input.disabled {opacity: .5;}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="telephone"]{
+  font-size: {{ settings.regular_font_size}};
+  line-height: {{ settings.regular_line_height}};
+  box-sizing: border-box;
+    -moz-box-sizing: border-box; /*Firefox 1-3*/
+    -webkit-box-sizing: border-box; /* Safari */
+    border:1px solid #d4d4d4;
+    border-radius: 0;
+    box-shadow:none;
+}
+
+select{
+  font-size: {{ settings.regular_font_size}};
+  line-height: {{ settings.regular_line_height}};
+  border:1px solid #d4d4d4;
+    border-radius: 0;
+    box-shadow:none;
+    padding: 2px;
+    box-sizing: content-box;
+    -moz-box-sizing:content-box;
+    -webkit-box-sizing:content-box;
+}
+
+textarea{min-height: 100px;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box; /*Firefox 1-3*/
+  -webkit-box-sizing: border-box; /* Safari */
+  resize: vertical;
+  border-radius: 0;
+  box-shadow:none;
+-webkit-border-radius: 0 !important;
+   -moz-border-radius: 0 !important;
+        border-radius: 0 !important;
+}
+
+
+
+/*Buttons*/
+
+.btn {padding: 19px 20px;font: bold 15px 'Trebuchet MS';
+-webkit-border-radius: 0;
+   -moz-border-radius: 0;
+        border-radius: 0;
+}
+
+.btn.btn-info {}
+
+.btn.btn-info,
+.btn.btn-primary {
+  background: {{ settings.btn_primary_bg_t }};
+  background: -moz-linear-gradient(top,  {{ settings.btn_primary_bg_t }} 0%,  {{ settings.btn_primary_bg_b }} 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,{{ settings.btn_primary_bg_t }}), color-stop(100%, {{ settings.btn_primary_bg_b }}));
+  background: -webkit-linear-gradient(top,  {{ settings.btn_primary_bg_t }} 0%, {{ settings.btn_primary_bg_b }} 100%);
+  background: -o-linear-gradient(top,  {{ settings.btn_primary_bg_t }} 0%, {{ settings.btn_primary_bg_b }} 100%);
+  background: -ms-linear-gradient(top,  {{ settings.btn_primary_bg_t }} 0%, {{ settings.btn_primary_bg_b }} 100%);
+  background: linear-gradient(to bottom,  {{ settings.btn_primary_bg_t }} 0%, {{ settings.btn_primary_bg_b }} 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='{{ settings.btn_primary_bg_t }}', endColorstr=' {{ settings.btn_primary_bg_b }}',GradientType=0 );
+  border-color:{{ settings.btn_primary_bg_b }};
+  color:{{settings.btn_primary_color}} !important;
+}
+
+.btn.btn-info:hover,
+.btn.btn-primary:hover {
+background: {{ settings.btn_primary_bg_hover }};
+color:{{settings.btn_primary_color_hover}} !important;
+border-color:{{ settings.btn_primary_bg_hover }};
+}
+
+.btn.btn-info a,
+.btn.btn-primary a {color:{{settings.btn_primary_color}} !important;}
+
+
+
+/*Images*/
+.article-img {}
+.article-img.pull-left {margin: 0 12px 12px 0;}
+
+
+/*Pagination*/
+
+.pagination {margin: 30px 0 15px 0;}
+
+.pagination a,
+.pagination span {
+-webkit-border-radius: 0 !important;
+   -moz-border-radius: 0 !important;
+        border-radius: 0 !important;
+}
+
+.pagination span.current {font-weight: bold;color: {{ settings.link_color_act }};}
+
+.pagination > li > span {display: block;padding: 0;}
+.pagination > li > span a {display: block;padding: 6px 12px;}
+.pagination > li > span.current {display: block;padding: 6px 12px;background: none;cursor: default;}
+
+
+/*Lists*/
+
+ul.list{
+  margin: 0;
+  padding: 0px;
+}
+ul.list li{
+  list-style: none;
+  line-height: 19px;
+}
+ul.list li a{
+  color:{{ settings.link_color }};
+}
+ul.list li a:hover{
+  color:{{ settings.link_color_act }};
+}
+
+/*------------------*/
+
+ul.product-listing{
+  margin: 0;
+  padding: 0px;
+}
+ul.product-listing li{
+  list-style: none;
+  padding-bottom: 1em;
+}
+
+
+
+/************************************* TRANSITIONS *************************************/
+
+.trs_color {
+-webkit-transition: color 0.6s ease;
+   -moz-transition: color 0.6s ease;
+    -ms-transition: color 0.6s ease;
+     -o-transition: color 0.6s ease;
+        transition: color 0.6s ease;
+}
+
+.trs_color:hover {
+-webkit-transition: color 0.2s ease;
+   -moz-transition: color 0.2s ease;
+    -ms-transition: color 0.2s ease;
+     -o-transition: color 0.2s ease;
+        transition: color 0.2s ease;
+}
+
+.trs_bg {
+-webkit-transition: background 0.6s ease;
+   -moz-transition: background 0.6s ease;
+    -ms-transition: background 0.6s ease;
+     -o-transition: background 0.6s ease;
+        transition: background 0.6s ease;
+}
+
+.trs_bg:hover {
+-webkit-transition: background 0.2s ease;
+   -moz-transition: background 0.2s ease;
+    -ms-transition: background 0.2s ease;
+     -o-transition: background 0.2s ease;
+        transition: background 0.2s ease;
+}
+
+.trs_scale:hover i {
+-webkit-transform: scale(0.85);
+   -moz-transform: scale(0.85);
+    -ms-transform: scale(0.85);
+     -o-transform: scale(0.85);
+        transform: scale(0.85);
+}
+
+
+
+/************************************* HEADER *************************************/
+
+#header {border-bottom: 70px solid {{ settings.nav_item_bg }};}
+#header a {color: {{ settings.header_link }}}
+
+#header .container {min-height: 180px;position: relative;}
+
+#site-title {float: left;padding: 46px 0 0 0;font: bold 80px/1em 'Trebuchet MS';letter-spacing: -3px;}
+#site-title a {color: {{ settings.link_color }};text-decoration: none;}
+#site-title a:hover {color: {{ settings.link_color_act }};}
+#site-title img {max-width: 85%;}
+
+.header_tiles {float: right;margin: 28px 0 0 0;}
+.header_tiles ul {list-style: none;overflow: hidden;margin: 0;}
+.header_tiles ul li {float: left;border: 1px solid {{ settings.color1 }};border-width: 1px 0 0 1px;}
+
+.header_tiles ul.header_tiles-1 {padding: 0;}
+.header_tiles ul.header_tiles-1 li.tile {width: 73px;height: 61px;}
+.header_tiles ul.header_tiles-1 li.tile_home {background: {{ settings.color4 }};}
+.header_tiles ul.header_tiles-1 li.tile_twi {background: {{ settings.color5 }};}
+.header_tiles ul.header_tiles-1 li.tile_gpl {background: {{ settings.color6 }};}
+.header_tiles ul.header_tiles-1 li.tile_fcb {background: {{ settings.color7 }};}
+.header_tiles ul.header_tiles-1 li.tile_pin {background: {{ settings.color8 }};}
+.header_tiles ul.header_tiles-1 li.tile_customer {background: {{ settings.color9 }};}
+
+.header_tiles ul.header_tiles-1 li a {width: 73px;height: 60px;display: block;text-align: center;line-height: 60px;}
+.header_tiles ul.header_tiles-1 li a:hover {background: {{ settings.color3 }};}
+
+.header_tiles ul.header_tiles-1 li.tile_home a {font-size: 43px;}
+.header_tiles ul.header_tiles-1 li.tile_twi a {font-size: 40px;}
+.header_tiles ul.header_tiles-1 li.tile_gpl a {font-size: 35px;font-weight: bold;}
+.header_tiles ul.header_tiles-1 li.tile_fcb a {font-size: 37px;}
+.header_tiles ul.header_tiles-1 li.tile_pin a {font-size: 40px;}
+.header_tiles ul.header_tiles-1 li.tile_customer a {font-size: 40px;}
+
+.header_tiles ul.header_tiles-1 li.tile_currency {background: {{ settings.color10 }};}
+.header_tiles ul.header_tiles-1 li.tile_currency .select_wrap {width: 105px;height: 60px;position: relative;}
+.header_tiles ul.header_tiles-1 li.tile_currency i {width: 42px;height: 60px;background: {{ settings.color10 }};font-size: 33px;color: {{ settings.color1 }};line-height: 59px;position: absolute;right: 0;top: 0;bottom: 0;}
+.header_tiles ul.header_tiles-1 li.tile_currency .customSelect {width: 105px;height: 60px;display: block;padding: 0 0 0 8px;background: none;border: none;font: bold 19px/60px 'Trebuchet MS';color: {{ settings.color1 }};}
+.header_tiles ul.header_tiles-1 li.tile_currency select {width: 105px;height: 60px;position: absolute;cursor: pointer;
+opacity: 0;
+-webkit-box-sizing: border-box;
+   -moz-box-sizing: border-box;
+        box-sizing: border-box;
+}
+.header_tiles ul.header_tiles-1 li.tile_currency select option {background: {{ settings.color3 }};border: none;color: {{ settings.color1 }};}
+.header_tiles ul.header_tiles-1 li.tile_currency .select_wrap:hover {background: {{ settings.color3 }};}
+.header_tiles ul.header_tiles-1 li.tile_currency .select_wrap:hover i {background: {{ settings.color3 }};}
+
+.tile a,
+.select_wrap,
+.select_wrap i {
+-webkit-transition: all 0.6s ease;
+   -moz-transition: all 0.6s ease;
+    -ms-transition: all 0.6s ease;
+     -o-transition: all 0.6s ease;
+        transition: all 0.6s ease;
+}
+
+.tile a:hover,
+.select_wrap:hover,
+.select_wrap:hover i {
+-webkit-transition: all 0.2s ease;
+   -moz-transition: all 0.2s ease;
+    -ms-transition: all 0.2s ease;
+     -o-transition: all 0.2s ease;
+        transition: all 0.2s ease;
+}
+
+
+
+.header_tiles ul.header_tiles-2 {padding: 0;}
+.header_tiles ul.header_tiles-2 li {width: 50%;height: 61px;}
+.header_tiles ul.header_tiles-2 li.tile_search {background: {{ settings.color11 }};}
+.header_tiles ul.header_tiles-2 li.tile_cart {background: {{ settings.color5 }};}
+.header_tiles ul.header_tiles-2 li:hover {background: {{ settings.color3 }};}
+
+.header_tiles ul.header_tiles-2 li.tile_search input {width: 100%;height: 60px;float: left;padding: 0 56px 0 17px;background: none;border: none;font: normal 15px 'Trebuchet MS';color: {{ settings.color1 }};}
+.header_tiles ul.header_tiles-2 li.tile_search a {width: 56px;height: 60px;display: block;float: left;margin: 0 0 0 -56px;font-size: 33px;color: {{ settings.color1 }};text-align: center;line-height: 59px;}
+.header_tiles ul.header_tiles-2 li.tile_search a:hover i {}
+
+.header_tiles ul.header_tiles-2 li.tile_cart {}
+.header_tiles ul.header_tiles-2 li.tile_cart a {height: 60px;display: block;padding: 0 13px 0 15px;text-decoration: none;line-height: 62px;}
+.header_tiles ul.header_tiles-2 li.tile_cart a i.fa-shopping-cart {margin: 0 12px 0 0;font-size: 33px;line-height: 59px;vertical-align: top;}
+.header_tiles ul.header_tiles-2 li.tile_cart a i.fa-arrow-circle-o-right {float: right;font-size: 33px;line-height: 59px;vertical-align: top;}
+.header_tiles ul.header_tiles-2 li.tile_cart a b {font: bold 19px 'Trebuchet MS';}
+.header_tiles ul.header_tiles-2 li.tile_cart a span {font: normal 15px 'Trebuchet MS';}
+
+
+
+/************************************* NAVIGATION *************************************/
+
+#navigation {position: absolute;left: 0;top: 180px;}
+
+.select-menu {display: none;}
+
+ul.sf-menu {}
+ul.sf-menu > li {height: 70px;border: 1px solid {{ settings.color1 }};border-width: 0 1px;}
+ul.sf-menu > li + li {border-width: 0 1px 0 0;}
+ul.sf-menu > li > a {height: 70px;display: block;padding: 0 20px;font: bold 19px/70px 'Trebuchet MS';color: {{ settings.color1 }};text-transform: uppercase;}
+
+ul.sf-menu > li:hover > a,
+ul.sf-menu > li:focus > a,
+ul.sf-menu > li.active > a {background: {{ settings.color3 }} !important;}
+
+.sf-menu ul {width: 199px !important;background: {{ settings.color3 }} !important;top: 70px !important;}
+
+.sf-menu ul li {border-top: 1px solid {{ settings.color1 }};}
+.sf-menu ul li a {padding: 9px 20px 10px 20px;display: block;font: normal 16px/1em 'Trebuchet MS';color: {{ settings.color1 }};text-transform: uppercase;}
+
+.sf-menu ul li.active a,
+.sf-menu ul li a:hover {background: {{ settings.color4 }} !important;}
+
+.sf-menu > li:hover,
+.sf-menu > li.sfHover,
+.sf-menu > li.active{}
+
+.sf-menu > li:hover > a,
+.sf-menu > li.sfHover > a,
+.sf-menu > li.active > a{}
+
+
+
+/*==================================================================*/
+/*Showcase row*/
+/*==================================================================*/
+
+#showcase {}
+#showcase .banner {margin: 30px 0 0 0;}
+
+#showcase a {display: block;padding: 27px 0 22px 0;background: {{ settings.color5 }};color: {{ settings.color1 }};text-align: center;}
+
+#showcase a h3 {margin: 0;padding: 11px 25px 0 25px;font: bold 33px/1em 'Trebuchet MS';color: {{ settings.color1 }};text-transform: none;}
+#showcase a p {margin: 0;padding: 2px 25px 0 25px;font: normal 15px/20px 'Trebuchet MS';}
+#showcase a i {display: inline-block;margin: 10px 0 0 0;font-size: 33px;line-height: 1em;}
+
+#showcase .banner_1 a {}
+#showcase .banner_2 a {background: {{ settings.color4 }};}
+#showcase .banner_3 a {background: {{ settings.color9 }};}
+#showcase .banner_4 a {background: {{ settings.color10 }};}
+
+#showcase a:hover {background: {{ settings.color3 }};}
+
+
+
+/*Newsletter*/
+
+.showcase_newsletter{
+  margin-top: 10px;
+}
+
+.widget__newsletter{ 
+  // background: url("{{ 'newsletter_bg.png' | asset_url }}") repeat left top transparent; 
+  background: {{ settings.newsletter_bg }};
+  padding: 20px;
+}
+
+.widget__newsletter .widget_header,
+.widget__newsletter .widget_content,
+.widget__social-links .widget_header,
+.widget__social-links .widget_content{}
+
+
+
+/************************************* MAIN *************************************/
+
+#main {}
+
+.page_title {margin: 0 0 15px 0;padding: 26px 0 16px 0;border-bottom: 3px solid {{ settings.headings_color }};font: bold {{ settings.h1_fsize }}/1em 'Trebuchet MS';color: {{ settings.headings_color }};text-transform: uppercase;}
+
+.product-listing {margin-top: -15px;}
+
+#main_content {}
+#main_content .product {margin: 60px 0 0 0;}
+
+#main_content .product .product_image-wrap {padding: 0 20px;}
+#main_content .product .product_image-wrap a {display: block;padding: 15px;border: 1px solid #e1e1e1;
+-webkit-box-sizing: border-box;
+   -moz-box-sizing: border-box;
+        box-sizing: border-box;
+}
+
+#main_content .product .product_image-wrap a img {width: 100%;}
+
+#main_content .product .product_title-wrap {min-height: 41px;margin: 20px 0 0 0;text-align: center;line-height: 20px;}
+#main_content .product .product_title-wrap a {font: normal 15px 'Trebuchet MS';}
+
+#main_content .product .product_price {height: 60px;margin: 20px 0 0 0;background: {{ settings.color5 }};}
+#main_content .product .product_price .money {display: inline-block;padding: 0 0 0 15px;font: bold 23px/60px 'Trebuchet MS';color: {{ settings.color1 }};}
+
+#main_content .product .product_price form {float: right;}
+
+#main_content .product .product_price a,
+#main_content .product .product_price input {width: 61px !important;height: 60px !important;display: block;float: right;padding: 0;border: none;border-left: 1px solid {{ settings.color1 }};font: 33px/60px "FontAwesome";color: {{ settings.color1 }};text-align: center;
+-webkit-border-radius: 0;
+   -moz-border-radius: 0;
+        border-radius: 0;
+-webkit-box-sizing: border-box;
+   -moz-box-sizing: border-box;
+        box-sizing: border-box;
+}
+
+#main_content .product .product_price .product_info {background: {{ settings.color9 }};}
+#main_content .product .product_price .product_info:hover {background: {{ settings.color10 }};}
+#main_content .product .product_price .product_add {background: {{ settings.color4 }};}
+#main_content .product .product_price .product_add:hover {background: {{ settings.color12 }};}
+
+
+
+.index-scope .product.step4-1 {clear: left;}
+
+.collection-scope .product.step3-1 {clear: left;}
+
+
+
+
+/* Breadcrumbs*/
+
+.breadcrumb {margin: 15px 0 0 0;
+-webkit-border-radius: 0;
+   -moz-border-radius: 0;
+        border-radius: 0;
+}
+
+.breadcrumb a,
+.breadcrumb span {font-size: 14px;}
+
+.breadcrumb .divider {margin: 0 7px;}
+
+
+
+/************************************* PRODUCT VIEW *************************************/
+
+.product_wrap {padding: 10px 0 0 0;}
+
+#product_image-container {overflow: hidden;}
+
+.product_wrap #bx-pager {margin: 15px 0 0 0;padding: 15px 0 0 0;border-top: 1px solid #e1e1e1;text-align: center;}
+
+.product_wrap .product-price {padding: 0;font: bold 20px 'Trebuchet MS';color: {{ settings.font_color }};}
+.product_wrap .product-price .money {color: {{ settings.color5 }};}
+.product_wrap .product-price .compare_at_price {color: #ccc;text-decoration: line-through;}
+
+.product_wrap .variants-wrapper {padding: 15px 0 0 0;}
+.product_wrap .variants-wrapper label {margin-right: 10px;}
+
+.product_wrap #purchase {vertical-align: top;padding: 15px 0 0 0;}
+.product_wrap #purchase label {display: inline-block;margin: 0;padding-top: 13px !important;line-height: 37px;}
+.product_wrap #purchase #quantity {width: 60px;height: 37px;display: inline-block;margin: 0 10px;padding: 0 10px;outline: none;text-align: center;}
+.product_wrap #purchase #add-to-cart {vertical-align: top;}
+    
+.product_wrap .product_details {margin: 15px 0 0 0;padding: 10px 0 15px 0;border: 1px solid #e1e1e1;border-width: 1px 0;}
+.product_wrap .product_details > div {padding: 5px 0 0 0;}
+
+.product_wrap #product_description {}
+.product_wrap #product_description h3 {padding: 15px 0 10px 0;font-size: 16px;text-transform: none;}
+
+.product_wrap .addthis_toolbox {margin: 15px 0 0 0;padding: 15px 0 0 0;border-top: 1px solid #e1e1e1;}
+
+.product_image-additioanl a {
+  display: block;
+  float: left;
+  width: 33%;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 0 6px;
+}
+
+.product_image-additioanl a img {max-width: 100%}
+
+
+
+/*===========================================*/
+/*Blog view*/
+
+#blog{}
+.blog-article{
+  padding-bottom: 40px;
+}
+.blog-article_title{}
+.blog-article_date{}
+.blog-article_read-more{}
+.blog-article_meta{}
+
+.blog-article_meta-comments{
+  float: right;
+}
+
+.blog-article{
+  padding-bottom: 20px;
+  border-bottom: 1px solid #ece5e3;
+  margin-bottom: 30px;
+  overflow: hidden;
+}
+.blog-article.last{
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border:none;
+}
+
+/*===========================================*/
+/*Blog article view*/
+
+.article_header {overflow: hidden;margin: 0 0 15px 0;}
+
+.blog-article_date {width: 60px;height: 65px;float: left;margin: 0 15px 0 0;background: {{ settings.link_color_act }};color: {{ settings.color1 }};text-align: center;}
+.blog-article_date span {display: block;font: bold 16px 'Trebuchet MS';}
+.blog-article_date span.day {padding: 9px 0 0 0;font-size: 26px;}
+.blog-article_date span.month {margin: -5px 0 0 0;}
+
+.article_header h2.article_title,
+.article_header h2.blog-article_title {display: inline-block;padding: 20px 0 0 0;font: bold 20px/1em 'Trebuchet MS';}
+
+.article_meta-comments,
+.blog-article_meta-comments {padding: 23px 0 0 0;}
+
+.article_meta-tags,
+.blog-article_meta-tags {}
+
+.article_meta-tags span,
+.blog-article_meta-tags span {display: none;}
+
+.article_meta-tags a,
+.blog-article_meta-tags a {font-size: 11px;text-decoration: underline;}
+
+
+
+.blog-article .rte,
+.article .rte {}
+
+.article_title{}
+.article-scope .article_image{}
+ .article_image{}
+
+ .article_meta > div{ float: left;}
+.article-scope .article_meta .article_meta-comments{ float: right;}
+.article-scope .article_read-more{}
+.article-scope .article_meta-tags{}
+
+.article_comments-form{}
+.section-title{}
+
+.article_image.pull-left{}
+
+
+  /*Comments*/
+
+  .comment-form{}
+  .comment-form #comment-author,
+  .comment-form #comment-email,
+  .comment-form #comment-body{
+    width: 100%;    
+  }
+
+  .comment-form #comment-body{
+    height: 100px;
+    margin-bottom: 20px;
+  }
+
+.article_comments-form{
+  padding-bottom: 10px;
+  margin-top: 20px;
+  padding-top: 10px;
+}
+
+.section-title{
+  margin-bottom: 2px;
+  padding-bottom: 8px;
+}
+
+.section_content{
+  padding-top: 8px;
+}
+
+.comment-submit {}
+
+#comments {padding-top: 15px;}
+#comments ul {list-style: none;padding: 0;}
+#comments ul h3.comment-author {font-weight: bold;}
+
+/*===========================================*/
+/*Page scopre*/
+
+.page_image{}
+.page_image img{}
+.page-row{}
+
+.page_content .rte .row img {width: 100%;
+-webkit-box-sizing: border-box;
+   -moz-box-sizing: border-box;
+        box-sizing: border-box;
+}
+
+
+/*===========================================*/
+/*Customer pages*/
+
+#customer_login {}
+
+
+#customer_login label,
+#recover-password label {display: block;padding: 10px 0 0 0;}
+
+#customer_login input[type="text"],
+#customer_login input[type="email"],
+#customer_login input[type="password"],
+#recover-password input[type="text"],
+#recover-password input[type="email"],
+#recover-password input[type="password"] {
+width: 100%;
+}
+
+#forgot_password {padding: 15px 0 0 0;}
+
+#customer_login .action_bottom,
+#recover-password .action_bottom {padding-top: 15px;}
+
+#customer_login .action_bottom .btn,
+#recover-password .action_bottom .btn {margin-right: 7px;}
+
+#customer_login .action_bottom a,
+#recover-password .action_bottom a {margin-left: 7px;}
+
+
+#recover-password p {padding: 10px 0 0 0;}
+
+.errors {margin: 15px 0 0 0;}
+
+
+
+ /*Orders*/
+
+#customer_orders table {width: 100%;margin: 10px 0 0 0;}
+
+#customer_orders table tr th {padding: 5px;border-bottom: 1px solid {{ settings.color3 }};color: {{ settings.link_color }};font-size: 15px;}
+#customer_orders table tr td {padding: 5px;border-top: 1px solid #e1e1e1;}
+
+#customer_orders table span.total.money {font: bold 20px 'Trebuchet MS';color: {{ settings.color5 }};}
+
+#order_details {width: 100%;margin: 10px 0 0 0;}
+#order_details th {padding: 5px;border-bottom: 1px solid {{ settings.color3 }};color: {{ settings.link_color }};font-size: 15px;}
+
+#order_details tbody tr,
+#order_details tfoot tr {border-top: 1px solid #e1e1e1;}
+
+#order_details td {padding: 5px;}
+
+#order_details .money {font: bold 20px 'Trebuchet MS';color: {{ settings.color5 }};}
+
+
+
+.email.note {padding: 10px 0 0 0;font-weight: bold;}
+.address.note p {padding: 0 0 10px 0;}
+
+
+
+/*Address*/
+
+#address_tables h4.address_title {padding: 15px 0;font-weight: bold;text-transform: uppercase;}
+
+.view_address {}
+.view_address p {margin: 10px 0 0 0;padding: 0;}
+
+.form-horizontal .control-group labels {margin: 0;}
+.form-horizontal .control-group .controls {}
+
+.form-horizontal label {margin-bottom: 7px !important;padding-top: 15px !important;}
+
+.form_customer .action_bottom {padding: 15px 0 0 0;}
+
+.form-control {
+-webkit-box-sizing: border-box;
+-moz-box-sizing: border-box;
+box-sizing: border-box;
+}
+
+#customer_detail h2.name {margin: 0 0 10px 0;padding: 15px 0 10px 0;border-bottom: 1px solid #e1e1e1;}
+#customer_detail h2.name a {float: right;color: {{ settings.color6 }};}
+#customer_detail h2.name a:hover {color: {{ settings.color2 }};}
+
+#customer_detail p {padding: 0 0 10px 0;}
+
+
+
+#order_address {}
+
+#order_address #order_payment,
+#order_address #order_shipping {padding-top: 15px;}
+
+#order_address #order_payment > div,
+#order_address #order_shipping > div {padding: 15px;border: 1px solid #e1e1e1;}
+
+#order_address h5 {margin: 0 0 10px 0;font-weight: bold;color: #151515;text-transform: uppercase;}
+#order_address .address.note p {margin: 0 0 10px 0;padding: 0;}
+
+
+.control_checkbox,
+.control_submit {padding: 15px 0 0 0;}
+
+
+#admin_header .page_title a {float: right;font-size: 18px;text-transform: none;}
+#admin_header .page_title {overflow: hidden;}
+
+
+/*===========================================*/
+/*Cart pages*/
+
+.cart-list {overflow: hidden;}
+
+.cart-list > .row {padding-top: 15px;padding-bottom: 15px;border-bottom: 1px solid #e1e1e1;}
+
+.cart-list .item_image {text-align: center;}
+.cart-list .item_image a img {width: 100%;}
+
+.cart-list .item_remove {margin: 16px 0 0 10px;}
+.cart-list .item_remove a {font-size: 20px;color: #fe2a2a;}
+.cart-list .item_remove a img {width: 100%;}
+
+.cart-list .row h3.item_vendor {padding: 10px 0;border-bottom: 1px solid #e1e1e1;font-size: 16px;color: #888;}
+
+.cart-list .item_price {padding: 10px 0 0 0;}
+.cart-list .item_price label {padding: 0;}
+
+.cart-list .item_price .price,
+.cart-list .item_price .total h3 {font: bold 20px/37px 'Trebuchet MS';color: {{ settings.color5 }};}
+
+.cart-list .item_price .total {text-align: right;}
+
+.cart-list .item_price .input-small {width: 60px !important;height: 37px;display: inline-block;padding: 5px;text-align: center;}
+
+.cart_subtotal h3 {margin: 0 0 15px 0;padding: 15px 0;border-bottom: 1px solid #e1e1e1;font: bold 20px 'Trebuchet MS';color: #151515;}
+.cart_subtotal h3 em {float: right;color: {{ settings.color5 }};font-style: normal;}
+
+.cart_instructions {}
+.cart_instructions h4 {padding: 15px 0;font-weight: bold;color: #151515;}
+.cart_instructions textarea {width: 100%;}
+
+#payment-methods {overflow: hidden;padding: 15px 0 0 0;}
+
+
+
+/*===========================================*/
+/*Contacts page*/
+
+.contact-scope iframe{
+  width:100%;
+  height:350px;
+  border: 1px solid #ece5e3;
+}
+
+.contact-scope {}
+
+.contact-form label {}
+.contact-form input[type="text"],
+.contact-form input[type="email"],
+.contact-form input[type="telephone"],
+.contact-form textarea {width: 100%;}
+
+
+
+.contact-form .btn-toolbar {padding: 15px 0 0 0;}
+
+.contact-form .alert {margin: 15px 0 0 0;
+-webkit-border-radius: 0;
+   -moz-border-radius: 0;
+        border-radius: 0;
+}
+
+
+
+/*===========================================*/
+/*Search page*/
+
+#searchresults {margin: 0;}
+
+#searchresults .search-form {}
+#searchresults .search-form label {display: block;}
+#searchresults .search-form input[type=text] {min-width: 20%;height: 37px;margin: 15px 10px 0 0;padding: 5px;}
+#searchresults .search-form input[type=submit] {vertical-align: top;margin: 15px 0 0 0;padding: 8px 20px;}
+
+#searchresults input {width: auto;}
+
+ol.search-results {margin: 0;padding: 0;border-bottom: 1px solid #e1e1e1;}
+ol.search-results li {margin: 0;padding: 0;overflow: hidden;border-top: 1px solid #e1e1e1;}
+ol.search-results li a {font: normal 15px 'Trebuchet MS';}
+
+.search-result_image {padding: 0 15px 0 0;}
+
+
+/*==================================================================*/
+/*Bottom row*/
+/*==================================================================*/
+
+
+#bottom {padding: 61px 0 53px 0;}
+#bottom h3 {margin: 0;padding: 0 0 16px 0;border-bottom: 3px solid {{ settings.headings_color }};font: bold 19px/1em 'Trebuchet MS';color: {{ settings.headings_color }};text-transform: uppercase;}
+
+.bottom_block_1 p {margin: 0;padding: 13px 0 0 0;font: normal 15px/27px 'Trebuchet MS';color: #9e9d9d;}
+
+#bottom ul {padding: 9px 0 0 0;}
+#bottom ul li {padding: 8px 0 0 0;line-height: 1em;}
+#bottom ul li a {font: normal 15px 'Trebuchet MS';color: #9e9d9d;}
+#bottom ul li a:hover {color: {{ settings.color2 }};}
+
+#bottom p.adr {margin: 0;padding: 16px 0 0 0;font: normal 15px/21px 'Trebuchet MS';color: #9e9d9d;}
+#bottom p.tel {margin: 0;padding: 14px 0 0 0;font: bold 18px/1em 'Trebuchet MS';color: #9e9d9d;}
+#bottom p.tel i {display: inline-block;vertical-align: middle;margin: 0 10px 0 0;font-size: 31px;color: #444;position: relative;top: -1px;}
+
+
+
+/*==================================================================*/
+/*Footer row*/
+/*==================================================================*/
+
+#footer {}
+#footer .container {padding: 17px 0 0 0;border-top: 3px solid {{ settings.headings_color }};font: normal 15px/1em 'Trebuchet MS';color: #9e9d9d;}
+#footer .container a {color: #9e9d9d;}
+#footer .container a:hover {color: {{ settings.color2 }};}
+
+
+
+/*Widget Styles*/
+
+.widget h3 {margin: 0 0 15px 0;padding: 26px 0 16px 0;border-bottom: 3px solid {{ settings.headings_color }};font: bold {{ settings.h1_fsize }}/1em 'Trebuchet MS';color: {{ settings.headings_color }};text-transform: uppercase;}
+
+
+
+/*Collections*/
+
+.widget__collections ul {}
+.widget__collections ul li {padding: 5px 0;}
+.widget__collections ul li + li {border-top: 1px solid #e1e1e1;}
+.widget__collections ul li a {font: normal 15px 'Trebuchet MS';text-transform: uppercase;}
+.widget__collections ul li.active a {color: {{ settings.link_color_act }};}
+
+
+/* Best sellers*/
+.column .widget .product-listing {margin: 0;}
+
+.column .widget .product {width: 100% !important;overflow: hidden;float: none;margin: 30px 0 0 0;padding: 0;}
+
+.column .widget .product .product_image-wrap {width: 110px;float: left;margin: 0 15px 15px 0;padding: 0;}
+.column .widget .product .product_image-wrap a {display: block;padding: 10px;border: 1px solid #E1E1E1;}
+.column .widget .product .product_image-wrap a img {width: 100%;}
+
+.column .widget .product .product_title-wrap {min-height: 1px;margin: 0;text-align: left;}
+.column .widget .product .product_title-wrap a {font: normal 15px 'Trebuchet MS';}
+
+.column .widget .product .product_price {height: 40px;clear: both;margin: 20px 0 0 0;background: {{ settings.color5 }};}
+.column .widget .product .product_price .money {display: inline-block;padding: 0 0 0 10px;font: bold 20px/40px 'Trebuchet MS';color: {{ settings.color1 }};}
+
+.column .widget .product .product_price a,
+.column .widget .product .product_price input{width: 41px;height: 40px;display: block;float: right;border: none;border-left: 1px solid {{ settings.color1 }};font: 20px/40px "FontAwesome";color: {{ settings.color1 }};text-align: center;}
+
+.column .widget .product .product_price form {float: right;}
+
+.column .widget .product .product_price .product_info {background: {{ settings.color9 }};}
+.column .widget .product .product_price .product_info:hover {background: {{ settings.color10 }};}
+.column .widget .product .product_price .product_add {background: {{ settings.color4 }};}
+.column .widget .product .product_price .product_add:hover {background: {{ settings.color12 }};}
+
+
+
+/* Newsletter*/
+
+#mailing-list-module{}
+#mailing-list-module form{ }
+
+
+
+/*Related products*/
+
+.widget__related-products {}
+.widget__related-products .product {margin: 30px 0 0 0 !important;}
+
+
+
+
+/*Payment Methods*/
+
+#payment-methods{}
+#payment-methods ul{
+  margin:0;
+  padding:0;
+}
+#payment-methods ul li{
+  list-style:none;
+  display:block;
+  float:left;
+  padding: 0 4px 4px 0;  
+}
+
+  /*Social Links*/
+
+.widget__social-links{}
+.widget__social-links .widget_title{ padding-bottom: 5px;}
+
+.social-links-list{
+  margin: 0;
+  padding: 0;
+}
+.social-links-list li{
+  list-style: none;
+  margin: 0;
+  padding: 4px;
+  font-size: 20px;
+  line-height: 20px;
+  display: inline-block;
+}
+.social-links-list li a{}
+.addthis_toolbox{}
+
+.social-links-list li a.twitter{}
+.social-links-list li a.google-plus{}
+.social-links-list li a.facebook{}
+.social-links-list li a.linkedin{}
+.social-links-list li a.twitter{}
+.social-links-list li a.pinterest{}
+.social-links-list li a.rss{}

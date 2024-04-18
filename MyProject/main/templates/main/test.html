@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div id="app">
+        <div v-for="g in categories">
+            {{g.name}} ****
+        </div>
+    </div>
+    <!-- включване на VUE js -->
+    <script src="https://unpkg.com/vue@3"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="{% static 'REST/functions.js' %}"></script>
+    <script src="{% static 'REST/shop.js' %}"></script>
+</body>
+</html>

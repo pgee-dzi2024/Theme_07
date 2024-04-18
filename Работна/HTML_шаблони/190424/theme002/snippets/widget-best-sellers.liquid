@@ -1,0 +1,15 @@
+{% assign listing_cols = '1' %}
+{% assign image_size = 'small' %}
+
+<div class="widget widget__best-sellers">
+  <div class="widget_header">
+    <h3>Best Sellers</h3>
+  </div>
+  <div class="widget_content">
+    <div class="product-listing product-listing__bestsellers">
+      {% for product in collections[settings.bestsellers_cat].products limit:3 %}
+        {% include 'product-grid-item' with 'listing_cols' with 'image_size' %}
+      {% endfor %}
+    </div>
+  </div>
+</div>

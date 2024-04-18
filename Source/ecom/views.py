@@ -180,13 +180,14 @@ def delete_order_view(request,pk):
     order.delete()
     return redirect('admin-view-booking')
 
+
 # for changing status of order (pending,delivered...)
 @login_required(login_url='adminlogin')
 def update_order_view(request,pk):
-    order=models.Orders.objects.get(id=pk)
-    orderForm=forms.OrderForm(instance=order)
-    if request.method=='POST':
-        orderForm=forms.OrderForm(request.POST,instance=order)
+    order = models.Orders.objects.get(id=pk)
+    orderForm = forms.OrderForm(instance=order)
+    if request.method == 'POST':
+        orderForm = forms.OrderForm(request.POST,instance=order)
         if orderForm.is_valid():
             orderForm.save()
             return redirect('admin-view-booking')
@@ -200,10 +201,9 @@ def view_feedback_view(request):
     return render(request,'ecom/view_feedback.html',{'feedbacks':feedbacks})
 
 
-
-#---------------------------------------------------------------------------------
-#------------------------ PUBLIC CUSTOMER RELATED VIEWS START ---------------------
-#---------------------------------------------------------------------------------
+# ---------------------------------------------------------------------------------
+# ------------------------ PUBLIC CUSTOMER RELATED VIEWS START ---------------------
+# ---------------------------------------------------------------------------------
 def search_view(request):
     # whatever user write in search box we get in query
     query = request.GET['query']
