@@ -10,6 +10,7 @@ urlpatterns = [
 
     path('api/categories/', views.CategorySerializerView.as_view()),
     path('api/items/<int:group>/<int:category>/<int:order>/', views.ItemSerializerView.as_view()),
+    path('api/config/<int:group>/<int:category>/<int:order>/', views.CategorySerializerView.as_view()),
 ]
 
 if settings.DEBUG:
