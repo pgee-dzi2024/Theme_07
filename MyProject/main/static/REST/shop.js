@@ -20,8 +20,19 @@ const App = {
         grid_mode:3,
         selected_item_quantity:0,
         selected_item_id:0,
+        conf: [],
+        conf_total: 0,
+        conf_MB:0,
+        conf_CPU:0,
+        conf_FAN:0,
+        conf_BOX:0,
+        conf_PSU:0,
+        conf_RAM:0,
+        conf_HDD:0,
+        conf_Video:0,
+        conf_sum:0,
+
         cart: [],
-        order_total: 0,
         order_details:{
             first_name: '',
             last_name: '',
@@ -32,6 +43,7 @@ const App = {
             note: '',
             order_details: '',
             },
+        order_total: 0,
         }
      },
 
@@ -46,7 +58,8 @@ const App = {
             if (SectionName=='за нас')
                 {this.status=3}
             if (SectionName=='конфигуратор')
-                {this.status=4}
+                {this.status=4
+                this.setFilterByGroup(2)}
             let st=this.status
         /*
             setTimeout(function(){setSectionTA(st)}, 100)
@@ -97,6 +110,11 @@ const App = {
             this.filter.cat_id=category
             this.loadItems()
         },
+        setFilterByGroup(group){
+            this.filter.group_id=1
+            this.filter.cat_id=group
+            this.loadItems()
+        },
         selectModalItem(index){
             this.selected_item_id=index
             this.selected_item_quantity=1
@@ -129,6 +147,36 @@ const App = {
                 }
             this.makeTotal()
             this.setSection('количка')
+        },
+        addToConf(idx){
+            if(this.items[idx].category.id==2){this.conf_MB += 1}
+            if(this.items[idx].category.id==3){this.conf_CPU += 1}
+            if(this.items[idx].category.id==6){this.conf_FAN += 1}
+            if(this.items[idx].category.id==4){this.conf_RAM += 1}
+            if(this.items[idx].category.id==21){this.conf_HDD += 1}
+            if(this.items[idx].category.id==5){this.conf_Video += 1}
+            if(this.items[idx].category.id==22){this.conf_PSU += 1}
+            if(this.items[idx].category.id==7){this.conf_BOX += 1}
+
+            if(this.conf_HDD<2){this.setFilterByGroup(21)}
+            if(this.conf_RAM<4){this.setFilterByGroup(4)}
+            if(this.conf_BOX==0){this.setFilterByGroup(7)}
+            if(this.conf_PSU==0){this.setFilterByGroup(22)}
+            if(this.conf_Video==0){this.setFilterByGroup(5)}
+            if(this.conf_FAN==0){this.setFilterByGroup(6)}
+            if(this.conf_CPU==0){this.setFilterByGroup(3)}
+            if(this.conf_MB==0){this.setFilterByGroup(2)}
+
+            this.conf_sum = this.conf_BOX+this.conf_PSU+this.conf_Video+this.conf_FAN+this.conf_CPU+this.conf_MB+
+                            this.conf_HDD+this.conf_RAM
+            console.log('*** ', this.conf_sum)
+
+            this.conf[this.conf.length] = this.items[idx]
+            this.conf_total=0
+            for(i=0; i<this.conf.length; i++)
+                {
+                this.conf_total += parseFloat(this.conf[i].price)
+                }
         },
         changeQt(i,idx){
             let q = parseInt(this.cart[idx].qt)

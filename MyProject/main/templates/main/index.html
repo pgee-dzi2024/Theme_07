@@ -56,11 +56,11 @@
                         <!-- Begin Header Logo Area -->
                         <div class="col-lg-3">
                             <div class="logo pb-sm-30 pb-xs-30">
-                                <a href="index.html">
-                                    {% endverbatim %}
+                                {% endverbatim %}
+                                <a href="{% url 'home' %}">
                                     <img src="{% static 'images/menu/logo/1.png' %}" alt="">
-                                    {% verbatim %}
                                 </a>
+                                {% verbatim %}
                             </div>
                         </div>
                         <!-- Header Logo Area End Here -->
@@ -73,53 +73,14 @@
                                     <!-- Begin Header Mini Cart Area -->
                                     <li class="hm-minicart">
                                         <div class="hm-minicart-trigger">
-                                            <span class="item-icon"></span>
-                                            <span class="item-text">80.00 лв.
-                                                <span class="cart-item-count">33</span>
-                                            </span>
+                                            <a @click="setSection('количка')">
+                                                <span class="item-icon"></span>
+                                                <span class="item-text">80.00 лв.
+                                                    <span class="cart-item-count">33</span>
+                                                </span>
+                                            </a>
                                         </div>
                                         <span></span>
-                                        <div class="minicart">
-                                            <ul class="minicart-product-list">
-                                                <li>
-                                                    <a href="single-product.html" class="minicart-product-image">
-                                                        {% endverbatim %}
-                                                        <img src="{% static 'images/product/small-size/5.jpg' %}" alt="cart products">
-                                                        {% verbatim %}
-                                                    </a>
-                                                    <div class="minicart-product-details">
-                                                        <h6><a href="single-product.html">Aenean eu tristique</a></h6>
-                                                        <span>1 x 40 лв.</span>
-                                                    </div>
-                                                    <button class="close" title="Remove">
-                                                        <i class="fa fa-close"></i>
-                                                    </button>
-                                                </li>
-                                                <li>
-                                                    <a href="single-product.html" class="minicart-product-image">
-                                                        {% endverbatim %}
-                                                        <img src="{% static 'images/product/small-size/6.jpg' %}" alt="cart products">
-                                                        {% verbatim %}
-                                                    </a>
-                                                    <div class="minicart-product-details">
-                                                        <h6><a href="single-product.html">Aenean eu tristique</a></h6>
-                                                        <span>2 x 20 лв.</span>
-                                                    </div>
-                                                    <button class="close" title="Remove">
-                                                        <i class="fa fa-close"></i>
-                                                    </button>
-                                                </li>
-                                            </ul>
-                                            <p class="minicart-total">ОБЩО: <span>80.00 лв.</span></p>
-                                            <div class="minicart-button">
-                                                <a href="shopping-cart.html" class="li-button li-button-fullwidth li-button-dark">
-                                                    <span>Виж по-подробно</span>
-                                                </a>
-                                                <a href="checkout.html" class="li-button li-button-fullwidth">
-                                                    <span>Завърши поръчката</span>
-                                                </a>
-                                            </div>
-                                        </div>
                                     </li>
                                     <!-- Header Mini Cart Area End Here -->
                                 </ul>
@@ -263,7 +224,7 @@
         </div>
         <!-- Slider With Banner Area End Here -->
 
-        <!-- Begin Li's Content Wraper Area СТОКИ -->
+        <!-- СТОКИ -->
         <div id="shop" class="content-wraper pt-60 pb-60" v-if="status==0">
             <div class="container">
                 <div class="row">
@@ -312,21 +273,21 @@
                                                 <!-- single-product-wrap start -->
                                                 <div class="single-product-wrap">
                                                     <div class="product-image">
-                                                        <a href="single-product.html">
+                                                        <a href="">
                                                             <img  :src="item.photo" alt="Li's Product Image">
                                                         </a>
                                                         <span class="sticker" v-if="item.new_item">Нов</span>
                                                     </div>
                                                     <div class="product_desc">
                                                         <div class="product_desc_info">
-                                                            <h4><a class="product_name" href="single-product.html">{{ item.name }}</a></h4>
+                                                            <h4><a class="product_name" href="">{{ item.name }}</a></h4>
                                                             <div class="price-box">
                                                                 <span class="new-price">{{ item.price }} лв.</span>
                                                             </div>
                                                         </div>
                                                         <div class="add-actions">
                                                             <ul class="add-actions-link">
-                                                                <li class="add-cart active"><a href="shopping-cart.html">Добави в количката</a></li>
+                                                                <li class="add-cart active"><a @click="addToCart(item_index)">Добави в количката</a></li>
                                                                 <li><a @click="selectModalItem(item_index)" title="quick view" class="quick-view-btn"
                                                                        data-toggle="modal" data-target="#exampleModalCenter"><i class="fa fa-eye"></i></a></li>
                                                             </ul>
@@ -344,7 +305,7 @@
                                             <div class="row product-layout-list" v-for="(item, item_index) in page.data">
                                                 <div class="col-lg-3 col-md-5 ">
                                                     <div class="product-image">
-                                                        <a href="single-product.html">
+                                                        <a href="">
                                                             <img :src="item.photo" alt="Li's Product Image">
                                                         </a>
                                                         <span class="sticker" v-if="item.new_item">Нов</span>
@@ -353,7 +314,7 @@
                                                 <div class="col-lg-5 col-md-7">
                                                     <div class="product_desc">
                                                         <div class="product_desc_info">
-                                                            <h4><a class="product_name" href="single-product.html">{{ item.name }}</a></h4>
+                                                            <h4><a class="product_name" href="">{{ item.name }}</a></h4>
                                                             <div class="price-box">
                                                                 <span class="new-price">{{ item.price }} лв.</span>
                                                             </div>
@@ -414,74 +375,39 @@
                                 <table class="table">
                                     <thead>
                                         <tr>
-                                            <th class="li-product-remove">remove</th>
-                                            <th class="li-product-thumbnail">images</th>
-                                            <th class="cart-product-name">Product</th>
-                                            <th class="li-product-price">Unit Price</th>
-                                            <th class="li-product-quantity">Quantity</th>
-                                            <th class="li-product-subtotal">Total</th>
+                                            <th class="li-product-remove">премахни</th>
+                                            <th class="li-product-thumbnail">снимка</th>
+                                            <th class="cart-product-name">артикул</th>
+                                            <th class="li-product-price">цена</th>
+                                            <th class="li-product-quantity">количество</th>
+                                            <th class="li-product-subtotal">сума</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td class="li-product-remove"><a href="#"><i class="fa fa-times"></i></a></td>
-                                            {% endverbatim %}
-                                            <td class="li-product-thumbnail"><a href="#"><img src="{% static 'images/product/small-size/5.jpg' %}" alt="Li's Product Image"></a></td>
-                                            {% verbatim %}
-                                            <td class="li-product-name"><a href="#">Accusantium dolorem1</a></td>
-                                            <td class="li-product-price"><span class="amount">$46.80</span></td>
+                                        <tr v-for="(item, idx) in cart">
+                                            <td class="li-product-remove"><a  @click="removeCartItem(idx)"><i class="fa fa-times"></i></a></td>
+                                            <td class="li-product-thumbnail"><img :src="items[item.idx].photo"
+                                                                                  alt="Li's Product Image"
+                                                                                  style="max-height: 200px;"></td>
+                                            <td class="li-product-name">{{items[item.idx].name}}</td>
+                                            <td class="li-product-price"><span class="amount">{{items[item.idx].price}} лв.</span></td>
                                             <td class="quantity">
-                                                <label>Quantity</label>
                                                 <div class="cart-plus-minus">
-                                                    <input class="cart-plus-minus-box" value="1" type="text">
-                                                    <div class="dec qtybutton"><i class="fa fa-angle-down"></i></div>
-                                                    <div class="inc qtybutton"><i class="fa fa-angle-up"></i></div>
+                                                    <input class="cart-plus-minus-box" value="1" type="text" v-model="item.qt">
+                                                    <div class="dec qtybutton" @click="changeQt(-1, idx)"><i class="fa fa-angle-down"></i></div>
+                                                    <div class="inc qtybutton" @click="changeQt(1, idx)"><i class="fa fa-angle-up"></i></div>
                                                 </div>
                                             </td>
-                                            <td class="product-subtotal"><span class="amount">$70.00</span></td>
-                                        </tr>
-                                        <tr>
-                                            <td class="li-product-remove"><a href="#"><i class="fa fa-times"></i></a></td>
-                                            {% endverbatim %}
-                                            <td class="li-product-thumbnail"><a href="#"><img src="{% static 'images/product/small-size/6.jpg' %}" alt="Li's Product Image"></a></td>
-                                            {% verbatim %}
-                                            <td class="li-product-name"><a href="#">Mug Today is a good day</a></td>
-                                            <td class="li-product-price"><span class="amount">$71.80</span></td>
-                                            <td class="quantity">
-                                                <label>Quantity</label>
-                                                <div class="cart-plus-minus">
-                                                    <input class="cart-plus-minus-box" value="1" type="text">
-                                                    <div class="dec qtybutton"><i class="fa fa-angle-down"></i></div>
-                                                    <div class="inc qtybutton"><i class="fa fa-angle-up"></i></div>
-                                                </div>
-                                            </td>
-                                            <td class="product-subtotal"><span class="amount">$60.50</span></td>
+                                            <td class="product-subtotal"><span class="amount">{{(items[item.idx].price*item.qt).toFixed(2)}} лв.</span></td>
                                         </tr>
                                     </tbody>
                                 </table>
                             </div>
                             <div class="row">
-                                <div class="col-12">
-                                    <div class="coupon-all">
-                                        <div class="coupon">
-                                            <input id="coupon_code" class="input-text" name="coupon_code" value="" placeholder="Coupon code" type="text">
-                                            <input class="button" name="apply_coupon" value="Apply coupon" type="submit">
-                                        </div>
-                                        <div class="coupon2">
-                                            <input class="button" name="update_cart" value="Update cart" type="submit">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
                                 <div class="col-md-5 ml-auto">
                                     <div class="cart-page-total">
-                                        <h2>Cart totals</h2>
-                                        <ul>
-                                            <li>Subtotal <span>$130.00</span></li>
-                                            <li>Total <span>$130.00</span></li>
-                                        </ul>
-                                        <a href="#">Proceed to checkout</a>
+                                        <h2>Сума общо:  {{order_total.toFixed(2)}} лв.</h2>
+                                        <a href="#">Завърши поръчката</a>
                                     </div>
                                 </div>
                             </div>
@@ -900,7 +826,7 @@
         </div>
         <!-- Contact Main Page Area End Here -->
 
-        <!-- Begin Li's Laptop Product Area -->
+        <!-- КОНФИГУРАТОР избор -->
         <section class="product-area li-laptop-product pt-60 pb-45" v-if="status==4">
             <div class="container">
                 <div class="row">
@@ -908,280 +834,46 @@
                     <div class="col-lg-12">
                         <div class="li-section-title">
                             <h2>
-                                <span>Laptop</span>
+                                <span>КОНФИГУРАТОР</span>
                             </h2>
                             <ul class="li-sub-category-list">
-                                <li class="active"><a href="shop-left-sidebar.html">Prime Video</a></li>
-                                <li><a href="shop-left-sidebar.html">Computers</a></li>
-                                <li><a href="shop-left-sidebar.html">Electronics</a></li>
+                                <li class="active" v-if="conf_MB==0"><a @click="setFilterByGroup(2)">Дънна платка</a></li>
+                                <li v-if="conf_CPU==0"><a @click="setFilterByGroup(3)">Процесор</a></li>
+                                <li v-if="conf_FAN==0"><a @click="setFilterByGroup(6)">Охлаждане</a></li>
+                                <li v-if="conf_RAM<4"><a @click="setFilterByGroup(4)">RAM </a></li>
+                                <li v-if="conf_HDD<2"><a @click="setFilterByGroup(21)">HDD </a></li>
+                                <li v-if="conf_Video==0"><a @click="setFilterByGroup(5)">Видео карта </a></li>
+                                <li v-if="conf_PSU==0"><a @click="setFilterByGroup(22)">Захранване</a></li>
+                                <li v-if="conf_BOX==0"><a @click="setFilterByGroup(7)">Кутия</a></li>
                             </ul>
                         </div>
                         <div class="row">
-                            <div class="product-active owl-carousel">
-                                <div class="col-lg-12">
-                                    <!-- single-product-wrap start -->
-                                    <div class="single-product-wrap">
-                                        <div class="product-image">
-                                            <a href="single-product.html">
-                                                {% endverbatim %}
-                                                <img src="{% static 'images/product/large-size/1.jpg' %}" alt="Li's Product Image">
-                                                {% verbatim %}
-                                            </a>
-                                            <span class="sticker">New</span>
+                            <div class="col-lg-3 col-md-4 col-sm-6 mt-40" v-for="(item, item_index) in items">
+                                <!-- single-product-wrap start -->
+                                <div class="single-product-wrap">
+                                    <div class="product-image">
+                                        <a >
+                                            <img  :src="item.photo" alt="Li's Product Image">
+                                        </a>
+                                        <span class="sticker" v-if="item.new_item">Нов</span>
+                                    </div>
+                                    <div class="product_desc">
+                                        <div class="product_desc_info">
+                                            <h4><span class="product_name">{{ item.name }}</span></h4>
+                                            <div class="price-box">
+                                                <span class="new-price">{{ item.price }} лв.</span>
+                                            </div>
                                         </div>
-                                        <div class="product_desc">
-                                            <div class="product_desc_info">
-                                                <div class="product-review">
-                                                    <h5 class="manufacturer">
-                                                        <a href="shop-left-sidebar.html">Graphic Corner</a>
-                                                    </h5>
-                                                    <div class="rating-box">
-                                                        <ul class="rating">
-                                                            <li><i class="fa fa-star-o"></i></li>
-                                                            <li><i class="fa fa-star-o"></i></li>
-                                                            <li><i class="fa fa-star-o"></i></li>
-                                                            <li class="no-star"><i class="fa fa-star-o"></i></li>
-                                                            <li class="no-star"><i class="fa fa-star-o"></i></li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                                <h4><a class="product_name" href="single-product.html">Accusantium dolorem1</a></h4>
-                                                <div class="price-box">
-                                                    <span class="new-price">$46.80</span>
-                                                </div>
-                                            </div>
-                                            <div class="add-actions">
-                                                <ul class="add-actions-link">
-                                                    <li class="add-cart active"><a href="#">Add to cart</a></li>
-                                                    <li><a class="links-details" href="wishlist.html"><i class="fa fa-heart-o"></i></a></li>
-                                                    <li><a href="#" title="quick view" class="quick-view-btn" data-toggle="modal" data-target="#exampleModalCenter"><i class="fa fa-eye"></i></a></li>
-                                                </ul>
-                                            </div>
+                                        <div class="add-actions">
+                                            <ul class="add-actions-link">
+                                                <li class="add-cart active"><a @click="addToConf(item_index)">Добави</a></li>
+                                                <li><a @click="selectModalItem(item_index)" title="quick view" class="quick-view-btn"
+                                                       data-toggle="modal" data-target="#exampleModalCenter"><i class="fa fa-eye"></i></a></li>
+                                            </ul>
                                         </div>
                                     </div>
-                                    <!-- single-product-wrap end -->
                                 </div>
-                                <div class="col-lg-12">
-                                    <!-- single-product-wrap start -->
-                                    <div class="single-product-wrap">
-                                        <div class="product-image">
-                                            <a href="single-product.html">
-                                                {% endverbatim %}
-                                                <img src="{% static 'images/product/large-size/2.jpg' %}" alt="Li's Product Image">
-                                                {% verbatim %}
-                                            </a>
-                                            <span class="sticker">New</span>
-                                        </div>
-                                        <div class="product_desc">
-                                            <div class="product_desc_info">
-                                                <div class="product-review">
-                                                    <h5 class="manufacturer">
-                                                        <a href="shop-left-sidebar.html">Studio Design</a>
-                                                    </h5>
-                                                    <div class="rating-box">
-                                                        <ul class="rating">
-                                                            <li><i class="fa fa-star-o"></i></li>
-                                                            <li><i class="fa fa-star-o"></i></li>
-                                                            <li><i class="fa fa-star-o"></i></li>
-                                                            <li class="no-star"><i class="fa fa-star-o"></i></li>
-                                                            <li class="no-star"><i class="fa fa-star-o"></i></li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                                <h4><a class="product_name" href="single-product.html">Mug Today is a good day</a></h4>
-                                                <div class="price-box">
-                                                    <span class="new-price new-price-2">$71.80</span>
-                                                    <span class="old-price">$77.22</span>
-                                                    <span class="discount-percentage">-7%</span>
-                                                </div>
-                                            </div>
-                                            <div class="add-actions">
-                                                <ul class="add-actions-link">
-                                                    <li class="add-cart active"><a href="#">Add to cart</a></li>
-                                                    <li><a class="links-details" href="wishlist.html"><i class="fa fa-heart-o"></i></a></li>
-                                                    <li><a href="#" title="quick view" class="quick-view-btn" data-toggle="modal" data-target="#exampleModalCenter"><i class="fa fa-eye"></i></a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- single-product-wrap end -->
-                                </div>
-                                <div class="col-lg-12">
-                                    <!-- single-product-wrap start -->
-                                    <div class="single-product-wrap">
-                                        <div class="product-image">
-                                            <a href="single-product.html">
-                                                {% endverbatim %}
-                                                <img src="{% static 'images/product/large-size/3.jpg' %}" alt="Li's Product Image">
-                                                {% verbatim %}
-                                            </a>
-                                            <span class="sticker">New</span>
-                                        </div>
-                                        <div class="product_desc">
-                                            <div class="product_desc_info">
-                                                <div class="product-review">
-                                                    <h5 class="manufacturer">
-                                                        <a href="shop-left-sidebar.html">Graphic Corner</a>
-                                                    </h5>
-                                                    <div class="rating-box">
-                                                        <ul class="rating">
-                                                            <li><i class="fa fa-star-o"></i></li>
-                                                            <li><i class="fa fa-star-o"></i></li>
-                                                            <li><i class="fa fa-star-o"></i></li>
-                                                            <li class="no-star"><i class="fa fa-star-o"></i></li>
-                                                            <li class="no-star"><i class="fa fa-star-o"></i></li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                                <h4><a class="product_name" href="single-product.html">Accusantium dolorem1</a></h4>
-                                                <div class="price-box">
-                                                    <span class="new-price">$46.80</span>
-                                                </div>
-                                            </div>
-                                            <div class="add-actions">
-                                                <ul class="add-actions-link">
-                                                    <li class="add-cart active"><a href="#">Add to cart</a></li>
-                                                    <li><a class="links-details" href="wishlist.html"><i class="fa fa-heart-o"></i></a></li>
-                                                    <li><a href="#" title="quick view" class="quick-view-btn" data-toggle="modal" data-target="#exampleModalCenter"><i class="fa fa-eye"></i></a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- single-product-wrap end -->
-                                </div>
-                                <div class="col-lg-12">
-                                    <!-- single-product-wrap start -->
-                                    <div class="single-product-wrap">
-                                        <div class="product-image">
-                                            <a href="single-product.html">
-                                                {% endverbatim %}
-                                                <img src="{% static 'images/product/large-size/4.jpg' %}" alt="Li's Product Image">
-                                                {% verbatim %}
-                                            </a>
-                                            <span class="sticker">New</span>
-                                        </div>
-                                        <div class="product_desc">
-                                            <div class="product_desc_info">
-                                                <div class="product-review">
-                                                    <h5 class="manufacturer">
-                                                        <a href="shop-left-sidebar.html">Studio Design</a>
-                                                    </h5>
-                                                    <div class="rating-box">
-                                                        <ul class="rating">
-                                                            <li><i class="fa fa-star-o"></i></li>
-                                                            <li><i class="fa fa-star-o"></i></li>
-                                                            <li><i class="fa fa-star-o"></i></li>
-                                                            <li class="no-star"><i class="fa fa-star-o"></i></li>
-                                                            <li class="no-star"><i class="fa fa-star-o"></i></li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                                <h4><a class="product_name" href="single-product.html">Mug Today is a good day</a></h4>
-                                                <div class="price-box">
-                                                    <span class="new-price new-price-2">$71.80</span>
-                                                    <span class="old-price">$77.22</span>
-                                                    <span class="discount-percentage">-7%</span>
-                                                </div>
-                                            </div>
-                                            <div class="add-actions">
-                                                <ul class="add-actions-link">
-                                                    <li class="add-cart active"><a href="#">Add to cart</a></li>
-                                                    <li><a class="links-details" href="wishlist.html"><i class="fa fa-heart-o"></i></a></li>
-                                                    <li><a href="#" title="quick view" class="quick-view-btn" data-toggle="modal" data-target="#exampleModalCenter"><i class="fa fa-eye"></i></a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- single-product-wrap end -->
-                                </div>
-                                <div class="col-lg-12">
-                                    <!-- single-product-wrap start -->
-                                    <div class="single-product-wrap">
-                                        <div class="product-image">
-                                            <a href="single-product.html">
-                                                {% endverbatim %}
-                                                <img src="{% static 'images/product/large-size/5.jpg' %}" alt="Li's Product Image">
-                                                {% verbatim %}
-                                            </a>
-                                            <span class="sticker">New</span>
-                                        </div>
-                                        <div class="product_desc">
-                                            <div class="product_desc_info">
-                                                <div class="product-review">
-                                                    <h5 class="manufacturer">
-                                                        <a href="shop-left-sidebar.html">Graphic Corner</a>
-                                                    </h5>
-                                                    <div class="rating-box">
-                                                        <ul class="rating">
-                                                            <li><i class="fa fa-star-o"></i></li>
-                                                            <li><i class="fa fa-star-o"></i></li>
-                                                            <li><i class="fa fa-star-o"></i></li>
-                                                            <li class="no-star"><i class="fa fa-star-o"></i></li>
-                                                            <li class="no-star"><i class="fa fa-star-o"></i></li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                                <h4><a class="product_name" href="single-product.html">Accusantium dolorem1</a></h4>
-                                                <div class="price-box">
-                                                    <span class="new-price">$46.80</span>
-                                                </div>
-                                            </div>
-                                            <div class="add-actions">
-                                                <ul class="add-actions-link">
-                                                    <li class="add-cart active"><a href="#">Add to cart</a></li>
-                                                    <li><a class="links-details" href="wishlist.html"><i class="fa fa-heart-o"></i></a></li>
-                                                    <li><a href="#" title="quick view" class="quick-view-btn" data-toggle="modal" data-target="#exampleModalCenter"><i class="fa fa-eye"></i></a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- single-product-wrap end -->
-                                </div>
-                                <div class="col-lg-12">
-                                    <!-- single-product-wrap start -->
-                                    <div class="single-product-wrap">
-                                        <div class="product-image">
-                                            <a href="single-product.html">
-                                                {% endverbatim %}
-                                                <img src="{% static 'images/product/large-size/6.jpg' %}" alt="Li's Product Image">
-                                                {% verbatim %}
-                                            </a>
-                                            <span class="sticker">New</span>
-                                        </div>
-                                        <div class="product_desc">
-                                            <div class="product_desc_info">
-                                                <div class="product-review">
-                                                    <h5 class="manufacturer">
-                                                        <a href="shop-left-sidebar.html">Studio Design</a>
-                                                    </h5>
-                                                    <div class="rating-box">
-                                                        <ul class="rating">
-                                                            <li><i class="fa fa-star-o"></i></li>
-                                                            <li><i class="fa fa-star-o"></i></li>
-                                                            <li><i class="fa fa-star-o"></i></li>
-                                                            <li class="no-star"><i class="fa fa-star-o"></i></li>
-                                                            <li class="no-star"><i class="fa fa-star-o"></i></li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                                <h4><a class="product_name" href="single-product.html">Mug Today is a good day</a></h4>
-                                                <div class="price-box">
-                                                    <span class="new-price new-price-2">$71.80</span>
-                                                    <span class="old-price">$77.22</span>
-                                                    <span class="discount-percentage">-7%</span>
-                                                </div>
-                                            </div>
-                                            <div class="add-actions">
-                                                <ul class="add-actions-link">
-                                                    <li class="add-cart active"><a href="#">Add to cart</a></li>
-                                                    <li><a class="links-details" href="wishlist.html"><i class="fa fa-heart-o"></i></a></li>
-                                                    <li><a href="#" title="quick view" class="quick-view-btn" data-toggle="modal" data-target="#exampleModalCenter"><i class="fa fa-eye"></i></a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- single-product-wrap end -->
-                                </div>
+                                <!-- single-product-wrap end -->
                             </div>
                         </div>
                     </div>
@@ -1189,96 +881,48 @@
                 </div>
             </div>
         </section>
-        <!-- Li's Laptop Product Area End Here -->
+        <!-- КОНФИГУРАТОР избор -->
 
-        <!--Shopping Cart Area Start-->
+        <!--КОНФИГУРАТОР количка-->
         <div class="Shopping-cart-area pt-60 pb-60" v-if="status==4">
-            <div class="container">
-                <div class="row">
+            <div class="container" v-if="conf_sum<12">
+                <div class="row" >
                     <div class="col-12">
-                        <form action="#">
                             <div class="table-content table-responsive">
                                 <table class="table">
                                     <thead>
                                         <tr>
-                                            <th class="li-product-remove">remove</th>
-                                            <th class="li-product-thumbnail">images</th>
-                                            <th class="cart-product-name">Product</th>
-                                            <th class="li-product-price">Unit Price</th>
-                                            <th class="li-product-quantity">Quantity</th>
-                                            <th class="li-product-subtotal">Total</th>
+                                            <th class="li-product-remove">премахни</th>
+                                            <th class="li-product-thumbnail">снимка</th>
+                                            <th class="cart-product-name">артикул</th>
+                                            <th class="li-product-price">цена</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td class="li-product-remove"><a href="#"><i class="fa fa-times"></i></a></td>
-                                            <td class="li-product-thumbnail"><a href="#">
-                                                {% endverbatim %}
-                                                <img src="{% static 'images/product/small-size/5.jpg' %}" alt="Li's Product Image"></a></td>
-                                                {% verbatim %}
-                                            <td class="li-product-name"><a href="#">Accusantium dolorem1</a></td>
-                                            <td class="li-product-price"><span class="amount">$46.80</span></td>
-                                            <td class="quantity">
-                                                <label>Quantity</label>
-                                                <div class="cart-plus-minus">
-                                                    <input class="cart-plus-minus-box" value="1" type="text">
-                                                    <div class="dec qtybutton"><i class="fa fa-angle-down"></i></div>
-                                                    <div class="inc qtybutton"><i class="fa fa-angle-up"></i></div>
-                                                </div>
-                                            </td>
-                                            <td class="product-subtotal"><span class="amount">$70.00</span></td>
-                                        </tr>
-                                        <tr>
-                                            <td class="li-product-remove"><a href="#"><i class="fa fa-times"></i></a></td>
-                                            {% endverbatim %}
-                                            <td class="li-product-thumbnail"><a href="#"><img src="{% static 'images/product/small-size/6.jpg' %}" alt="Li's Product Image"></a></td>
-                                            {% verbatim %}
-                                            <td class="li-product-name"><a href="#">Mug Today is a good day</a></td>
-                                            <td class="li-product-price"><span class="amount">$71.80</span></td>
-                                            <td class="quantity">
-                                                <label>Quantity</label>
-                                                <div class="cart-plus-minus">
-                                                    <input class="cart-plus-minus-box" value="1" type="text">
-                                                    <div class="dec qtybutton"><i class="fa fa-angle-down"></i></div>
-                                                    <div class="inc qtybutton"><i class="fa fa-angle-up"></i></div>
-                                                </div>
-                                            </td>
-                                            <td class="product-subtotal"><span class="amount">$60.50</span></td>
+                                        <tr v-for="(item, idx) in conf">
+                                            <td class="li-product-remove"><a  @click="removeCartItem(idx)"><i class="fa fa-times"></i></a></td>
+                                            <td class="li-product-thumbnail"><img :src="item.photo"
+                                                                                  alt="Li's Product Image"
+                                                                                  style="max-height: 100px;"></td>
+                                            <td class="li-product-name">{{item.name}}</td>
+                                            <td class="li-product-price"><span class="amount">{{item.price}} лв.</span></td>
                                         </tr>
                                     </tbody>
                                 </table>
                             </div>
                             <div class="row">
-                                <div class="col-12">
-                                    <div class="coupon-all">
-                                        <div class="coupon">
-                                            <input id="coupon_code2" class="input-text" name="coupon_code2" value="" placeholder="Coupon code" type="text">
-                                            <input class="button" name="apply_coupon" value="Apply coupon" type="submit">
-                                        </div>
-                                        <div class="coupon2">
-                                            <input class="button" name="update_cart" value="Update cart" type="submit">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
                                 <div class="col-md-5 ml-auto">
                                     <div class="cart-page-total">
-                                        <h2>Cart totals</h2>
-                                        <ul>
-                                            <li>Subtotal <span>$130.00</span></li>
-                                            <li>Total <span>$130.00</span></li>
-                                        </ul>
-                                        <a href="#">Proceed to checkout</a>
+                                        <h2>Oбщо:  {{conf_total}} лв.</h2>
+                                        <a href="#">Прехвърли в количката</a>
                                     </div>
                                 </div>
                             </div>
-                        </form>
                     </div>
                 </div>
             </div>
         </div>
-        <!--Shopping Cart Area End-->
+        <!--КОНФИГУРАТОР количка End-->
 
         <!-- Begin Footer Area -->
         <div class="footer">
@@ -1381,7 +1025,7 @@
                                 <div class="product-details-left">
                                     <div class="product-details-images slider-navigation-1">
                                         <div class="lg-image">
-                                            <img :src="items[selected_item_id].photo" alt="product image">
+                                            <img :src="items[selected_item_id].photo.url" alt="product image">
                                         </div>
                                     </div>
                                 </div>

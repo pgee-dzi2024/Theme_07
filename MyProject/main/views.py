@@ -7,7 +7,7 @@ from rest_framework.response import Response
 
 
 def index(request):
-     return render(request, 'main/index.html',)
+    return render(request, 'main/index.html', )
 
 
 def test(request):
@@ -31,16 +31,16 @@ class CategorySerializerView(APIView):
 # СТОКИ
 class ItemSerializerView(APIView):
     def get(self, request, group, category, order):
-        order_s = 'id' # нови-->стари
-        if order == 1: # стари-->нови
+        order_s = 'id'  # нови-->стари
+        if order == 1:  # стари-->нови
             order_s = '-id'
-        if order == 2: # име A - Z
+        if order == 2:  # име A - Z
             order_s = 'name'
-        if order == 3: # име Z - A
+        if order == 3:  # име Z - A
             order_s = '-name'
-        if order == 4: # цена ниска-->висока
+        if order == 4:  # цена ниска-->висока
             order_s = 'price'
-        if order == 5: # цена висока-->ниска
+        if order == 5:  # цена висока-->ниска
             order_s = '-price'
 
         if group == 0:
